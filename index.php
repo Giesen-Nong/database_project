@@ -30,7 +30,7 @@ if(!isset($_SESSION['username'])){
                     header('Location: '.$home_url);
                 }
                 else{
-                    $home_url = 'admin.php';
+                    $home_url = 'index.php';
                     header('Location: '.$home_url);
                 }
             }else{//若查到的记录不对，则设置错误信息
@@ -50,7 +50,7 @@ if(!isset($_SESSION['username'])){
         header('Location: '.$home_url);
     }
     else{
-        $home_url = 'admin.php';
+        $home_url = 'admin';
         header('Location: '.$home_url);
     }
 }
