@@ -22,11 +22,11 @@ if(!isset($_SESSION['username'])){
                 $_SESSION['username']=$row['njs_UserNo_05'];
                 $_SESSION['permissions'] =$row['njs_UserLevel_05'];
                 if($_SESSION['permissions']==2){
-                $home_url = 'students_admin.php';
+                $home_url = 'students_admin';
                 header('Location: '.$home_url);
                 }
                 elseif ($_SESSION['permissions']==1){
-                    $home_url = 'teacher_admin.php';
+                    $home_url = 'teacher_admin';
                     header('Location: '.$home_url);
                 }
                 else{
@@ -42,7 +42,7 @@ if(!isset($_SESSION['username'])){
     }
 }else{//如果用户已经登录，则直接跳转到已经登录页面
     if($_SESSION['permissions']==2){
-        $home_url = 'students_admin.php';
+        $home_url = 'students_admin';
         header('Location: '.$home_url);
     }
     elseif ($_SESSION['permissions']==1){
