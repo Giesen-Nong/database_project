@@ -21,7 +21,7 @@ body {
 .meBox {
     float: left;
     width: 20rem;
-    height: 25rem;
+    height: 27rem;
     background-color: white;
     margin-top: 100px;
     margin-left: 10%;
@@ -32,7 +32,7 @@ body {
 
 .meBox:hover {
     width: 21rem;
-    height: 26rem;
+    height: 28rem;
     margin: 95px 0 0 9.5%;
 }
 
@@ -408,7 +408,7 @@ select {
 }
 
 .login-button { /* 按钮美化 */
-    width: 200px; /* 宽度 */
+    width: 100px; /* 宽度 */
     height: 40px; /* 高度 */
     border-width: 0px; /* 边框宽度 */
     border-radius: 3px; /* 边框半径 */

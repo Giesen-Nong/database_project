@@ -8,7 +8,7 @@ session_start();
 //使用一个会话变量检查登录状态
 if(!isset($_SESSION['username']) and $_SESSION['permissions']!=0){
     echo "<script> alert('权限不足'); </script>";
-    echo "<meta http-equiv='Refresh' content='0;URL=index.php'>";
+    echo "<meta http-equiv='Refresh' content='0;URL=../index.php'>";
 }
 $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 /**在已登录页面中，可以利用用户的session如$_SESSION['username']、
@@ -60,6 +60,8 @@ $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
                 <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="major_info.php"><span class="iconfont iconfriend"></span>专业信息</a>
 
                 <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="class_info.php"><span class="iconfont iconCommentenable"></span>班级信息</a>
+
+                <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="open_course.php"><span class="iconfont iconabout"></span>开课信息</a>
 
                 <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="user_info.php""><span class="iconfont iconabout"></span>账户管理</a>
             </div>

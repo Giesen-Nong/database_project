@@ -8,7 +8,7 @@ session_start();
 //使用一个会话变量检查登录状态
 if(!isset($_SESSION['username']) and $_SESSION['permissions']!=2){
     echo "<script> alert('权限不足'); </script>";
-    echo "<meta http-equiv='Refresh' content='0;URL=index.php'>";
+    echo "<meta http-equiv='Refresh' content='0;URL=../index.php'>";
 }
 $user_id=$_SESSION['username'];
 $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);

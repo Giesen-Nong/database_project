@@ -13,6 +13,7 @@ $course_tb='nongjs_course_05';
 $major_tb='nongjs_major_05';
 $class_tb='nongjs_class_05';
 $user_tb='nongjs_user_05';
+$ctc_tb='nongjs_classcoursetea_05';
 
 //添加学生信息
 function add_student(){
@@ -189,6 +190,33 @@ function add_user(){
 
 }
 
+//添加开课信息
+function add_open_couse(){
+    $id = $_POST['class_id'];
+    $c_id =$_POST['course_id'];
+    $t_id =$_POST['teacher_id'];
+    $db_table = $_POST['db_table'];
+    $link = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+    mysqli_query($link,"set names 'utf8';");
+    if(!$link){
+        echo "<script>alert('数据库连接失败!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
+
+    }
+    $sql = "INSERT INTO `$db_table` (njs_classNo_05,njs_courseNo_05,njs_teacherNo_05 ) VALUES ('$id','$c_id','$t_id');";
+    $query = mysqli_query($link,$sql);
+
+    if (!$query) {
+        echo "<script>alert('请输入有效信息!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
+    }
+    $affected = mysqli_affected_rows($link);
+    if($affected!==1){
+        echo "<script>alert('添加数据失败!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
+
+    }
+    echo "<script>alert('添加成功!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
+
+}
+
 if($_SERVER['REQUEST_METHOD']==='POST'){
     if ($_POST['db_table']==$student_tb){
         add_student();
@@ -207,6 +235,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     }
     elseif ($_POST['db_table']==$user_tb){
         add_user();
+    }
+    elseif ($_POST['db_table']==$ctc_tb){
+        add_open_couse();
     }
 }
 ?>

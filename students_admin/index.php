@@ -8,7 +8,7 @@ session_start();
 //使用一个会话变量检查登录状态
 if(!isset($_SESSION['username']) and $_SESSION['permissions']!=2){
     echo "<script> alert('权限不足'); </script>";
-    echo "<meta http-equiv='Refresh' content='0;URL=index.php'>";
+    echo "<meta http-equiv='Refresh' content='0;URL=../index.php'>";
 }
 $user_id=$_SESSION['username'];
 $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
@@ -29,6 +29,18 @@ $user = mysqli_fetch_assoc($mysql);
     <title>学生信息界面</title>
     <link rel="stylesheet" type="text/css" href="../css/FiraCode.css">
     <link rel="stylesheet" type="text/css" href="../css/nutssss.css">
+
+    <script type="text/javascript">
+        function send(i)
+        {
+            if (i==1)
+            {document.form_c.action="show_score.php";}
+            else
+            {document.form_c.action="show_course.php";}
+            document.form_c.submit();
+        }
+    </script>
+
 </head>
 
 <body>
@@ -44,16 +56,17 @@ $user = mysqli_fetch_assoc($mysql);
                 <p>性别:<?php echo $user['njs_studentSex_05']; ?></p>
                 <p>生源地:<?php echo $user['njs_area_05']; ?></p>
                 <p>已修学分:<?php echo $user['njs_studentCredit_05']; ?></p>
-                <form class="choose" method="post" action="search">
+                <form name="form_c" class="choose" method="post" action="#">
                     <label>成绩查询：</label>
                     <select name="term">
-                        <option>大一</option>
-                        <option>大二</option>
-                        <option>大三</option>
-                        <option>大四</option>
+                        <option value="大一">大一</option>
+                        <option value="大二">大二</option>
+                        <option value="大三">大三</option>
+                        <option value="大四">大四</option>
                     </select>
+                <button class="login-button" type="button" onclick="send(1)">查询成绩</button>
+                    <button class="login-button" type="button" onclick="send(0)">查询课程表</button>
                 </form>
-                <button class="login-button" type="submit">查询</button>
             </div>
             <!-- 两个按钮 -->
             <div class="meBox-Button">

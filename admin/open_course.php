@@ -3,7 +3,7 @@
 require_once 'connectvars.php';
 $mysqli = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 mysqli_query($mysqli,"set names 'utf8';");
-$sqls = mysqli_query($mysqli, 'select * from nongjs_major_05;');
+$sqls = mysqli_query($mysqli, 'select * from nongjs_classcourseopen_05;');
 session_start();
 //使用一个会话变量检查登录状态
 if(!isset($_SESSION['username']) and $_SESSION['permissions']!=0){
@@ -12,7 +12,7 @@ if(!isset($_SESSION['username']) and $_SESSION['permissions']!=0){
 }
 $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 /**在已登录页面中，可以利用用户的session如$_SESSION['username']、
- * $_SESSION['major_id']对数据库进行查询，可以做好多好多事情*/
+ * $_SESSION['user_id']对数据库进行查询，可以做好多好多事情*/
 ?>
 <html lang="zh-CN">
 <head>
@@ -57,20 +57,20 @@ $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
                 <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="course_info.php"><span class="iconfont iconrizhi"></span>课程信息</a>
 
-                <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="#" style="background-color: #28A9E0;"><span class="iconfont iconfriend"></span>专业信息</a>
+                <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="major_info.php"><span class="iconfont iconfriend"></span>专业信息</a>
 
                 <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="class_info.php"><span class="iconfont iconCommentenable"></span>班级信息</a>
 
-                <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="open_course.php"><span class="iconfont iconabout"></span>开课信息</a>
+                <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="#" style="background-color: #28A9E0;"><span class="iconfont iconabout"></span>开课信息</a>
 
-                <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="major_info.php"><span class="iconfont iconabout"></span>账户管理</a>
+                <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="user_info.php"><span class="iconfont iconabout"></span>账户管理</a>
             </div>
         </div>
         <div class="mdui-col-xs-12 mdui-col-md-10">
             <div class="mdui-card rin-card" >
                 <div class="info_container">
                     <div class="container" id="container1">
-                        <h1 class="text-center">专业基本信息管理</h1>
+                        <h1 class="text-center">开课信息管理</h1>
                         <form class="form-inline" role="form" style="margin-bottom: 3px">
                             <div class="form-group">
                                 <label class="sr-only" for="name">名称</label>
@@ -81,49 +81,64 @@ $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th class="text-center">专业编号</th>
-                                <th class="text-center">专业名称</th>
+                                <th class="text-center">班级编号</th>
+                                <th class="text-center">班级名称</th>
+                                <th class="text-center">课程名称</th>
+                                <th class="text-center">任课教师</th>
+                                <th class="text-center">课程学时</th>
+                                <th class="text-center">考核方式</th>
+                                <th class="text-center">课程学分</th>
                                 <th class="text-center">操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php while ($row = mysqli_fetch_assoc($sqls)): ?>
                                 <tr class="text-center">
-                                    <td><?php echo $row['njs_majorNo_05']; ?></td>
-                                    <td><?php echo $row['njs_majorName_05']; ?></td>
+                                    <td><?php echo $row['njs_classNo_05']; ?></td>
+                                    <td><?php echo $row['njs_className_05']; ?></td>
+                                    <td><?php echo $row['njs_courseName_05']; ?></td>
+                                    <td><?php echo $row['njs_teacherName_05']; ?></td>
+                                    <td><?php echo $row['njs_coursePeriod_05']; ?></td>
+                                    <td><?php echo $row['njs_courseAssesMethod_05']; ?></td>
+                                    <td><?php echo $row['njs_courseCredit_05']; ?></td>
                                     <td>
-                                        <a href="../api/del.php?id=<?php echo $row['njs_majorNo_05'];?>&db_table=nongjs_major_05" class="btn btn-danger">删除</a>
-                                        <a href="../api/major_update.php?id=<?php echo $row['njs_majorNo_05'];?>&db_table=nongjs_major_05" class="btn btn-primary">修改</a>
+                                        <a href="../api/del.php?id=<?php echo $row['njs_classNo_05'];?>&db_table=nongjs_classcoursetea_05&c_name=<?php echo $row['njs_courseName_05'];?>" class="btn btn-danger">删除</a>
                                     </td>
                                 </tr>
                             <?php endwhile;?>
                             </tbody>
                         </table>
-                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_user">添加专业信息</button>
+                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_user">添加开课信息</button>
                         <!-- 模态框（Modal） -->
                         <div class="modal fade" id="add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel">添加课程信息</h4>
+                                        <h4 class="modal-title" id="myModalLabel">添加开课信息</h4>
                                     </div>
                                     <div class="modal-body">
                                         <form id="form_data" class="form-horizontal" role="form" method="post" action="../api/add.php">
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <label  class="col-sm-2 control-label">专业编号</label>
+                                                    <label  class="col-sm-2 control-label">班级编号</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" id="major_id" name="major_id"/>
+                                                        <input type="text" id="class_id" name="class_id"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label  class="col-sm-2 control-label">专业名称</label>
+                                                    <label  class="col-sm-2 control-label">课程编号</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" id="major_name" name="major_name"/>
+                                                        <input type="text" id="course_id" name="course_id"/>
                                                     </div>
                                                 </div>
-                                                <input type="text" style="display: none" name="db_table" value="nongjs_major_05">
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label">任课教师编号</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" id="teacher_id" name="teacher_id"/>
+                                                    </div>
+                                                </div>
+                                                <input type="text" style="display: none" name="db_table" value="nongjs_classcoursetea_05">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭

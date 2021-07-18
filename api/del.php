@@ -6,7 +6,9 @@ $course_tb='nongjs_course_05';
 $major_tb='nongjs_major_05';
 $class_tb='nongjs_class_05';
 $user_tb='nongjs_user_05';
+$ctc_tb='nongjs_classcoursetea_05';
 $db_table = $_GET['db_table'];
+$c_name = $_GET['c_name'];
 // 1. 接收传递过来的id
     if(empty($_GET['id'])){
         exit('<h1>连接数据库失败</h1>');
@@ -33,6 +35,12 @@ $db_table = $_GET['db_table'];
     }
     elseif ($db_table==$user_tb){
         $sql="delete from `$db_table` where njs_UserNo_05 = '$id'";
+    }
+    elseif ($db_table==$ctc_tb){
+        $sql_f =mysqli_query($link,"select * from nongjs_course_05 where njs_courseName_05='$c_name';");
+        $row = mysqli_fetch_assoc($sql_f);
+        $c_id = $row['njs_courseNo_05'];
+        $sql="delete from `$db_table` where njs_classNo_05 = '$id' and njs_courseNo_05='$c_id' ";
     }
     $query = mysqli_query($link,$sql);
 // 4. 查询失败的处理

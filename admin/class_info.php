@@ -61,6 +61,8 @@ $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
                 <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="#" style="background-color: #28A9E0;"><span class="iconfont iconCommentenable"></span>班级信息</a>
 
+                <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="open_course.php"><span class="iconfont iconabout"></span>开课信息</a>
+
                 <a class="mdui-btn mdui-btn-raised rin-btn rin-btn-blue rin-btn-left mdui-text-capitalize" href="user_info.php"><span class="iconfont iconabout"></span>账户管理</a>
             </div>
         </div>
