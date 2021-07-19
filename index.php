@@ -22,8 +22,8 @@ if(!isset($_SESSION['username'])){
                 $_SESSION['username']=$row['njs_UserNo_05'];
                 $_SESSION['permissions'] =$row['njs_UserLevel_05'];
                 if($_SESSION['permissions']==2){
-                $home_url = 'students_admin';
-                header('Location: '.$home_url);
+                    $home_url = 'students_admin';
+                    header('Location: '.$home_url);
                 }
                 elseif ($_SESSION['permissions']==1){
                     $home_url = 'teacher_admin';

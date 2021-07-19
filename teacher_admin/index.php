@@ -63,7 +63,7 @@ $sql_s = mysqli_query($mysqli, "SELECT njs_courseName_05,njs_className_05,njs_cl
             </div>
         </div>
         <div class="mdui-col-xs-12 mdui-col-md-10">
-            <div class="mdui-card rin-card" >
+            <div class="mdui-card rin-card"  style="overflow-y: scroll" >
                 <div class="info_container">
                     <div class="container" id="container1">
                         <h1 class="text-center">任教信息</h1>

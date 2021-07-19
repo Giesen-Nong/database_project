@@ -40,7 +40,9 @@ function update_course(){
         echo "<script>alert('数据库连接失败!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
 
     }
-    $sql = "UPDATE `$db_table` SET njs_courseNo_05='$id',njs_courseName_05='$name',njs_teacherName_05='$teacher',njs_courseOpenSemester_05='$term',njs_coursePeriod_05=$time,njs_courseAssesMethod_05='$c_method',njs_courseCredit_05=$credit where njs_courseNo_05='$id'";
+    $sql = "UPDATE `$db_table` SET njs_courseNo_05='$id',njs_courseName_05='$name',njs_teacherName_05='$teacher',
+njs_courseOpenSemester_05='$term',njs_coursePeriod_05=$time,njs_courseAssesMethod_05='$c_method',
+njs_courseCredit_05=$credit where njs_courseNo_05='$id'";
     $query = mysqli_query($link,$sql);
     if (!$query) {
         echo "<script>alert('请输入有效信息!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";

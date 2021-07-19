@@ -31,7 +31,8 @@ function add_student(){
         echo "<script>alert('数据库连接失败!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
 
     }
-    $sql = "INSERT INTO `$db_table` (njs_studentNo_05,njs_studentName_05,njs_studentSex_05,njs_studentAge_05,njs_area_05,njs_studentCredit_05,njs_classNo_05) VALUES ('$id','$name','$sex',$age,'$area',$credit,'$class');";
+    $sql = "INSERT INTO `$db_table` (njs_studentNo_05,njs_studentName_05,njs_studentSex_05,njs_studentAge_05,
+njs_area_05,njs_studentCredit_05,njs_classNo_05) VALUES ('$id','$name','$sex',$age,'$area',$credit,'$class');";
     $query = mysqli_query($link,$sql);
 
     if (!$query) {
@@ -61,7 +62,8 @@ function add_teacher(){
         echo "<script>alert('数据库连接失败!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
 
     }
-    $sql = "INSERT INTO `$db_table` (njs_teacherNo_05,njs_teacherName_05,njs_teacherSex_05,njs_teacherAge_05,njs_teacherTitle_05,njs_teacherTel_05)
+    $sql = "INSERT INTO `$db_table` (njs_teacherNo_05,njs_teacherName_05,njs_teacherSex_05,njs_teacherAge_05,
+njs_teacherTitle_05,njs_teacherTel_05)
  VALUES ('$id','$name','$sex',$age,'$title','$tel');";
     $query = mysqli_query($link,$sql);
 
@@ -93,7 +95,8 @@ function add_course(){
         echo "<script>alert('数据库连接失败!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
 
     }
-    $sql = "INSERT INTO `$db_table` (njs_courseNo_05,njs_courseName_05,njs_teacherName_05,njs_courseOpenSemester_05,njs_coursePeriod_05,njs_courseAssesMethod_05,njs_courseCredit_05)
+    $sql = "INSERT INTO `$db_table` (njs_courseNo_05,njs_courseName_05,njs_teacherName_05,njs_courseOpenSemester_05,
+njs_coursePeriod_05,njs_courseAssesMethod_05,njs_courseCredit_05)
  VALUES ('$id','$name','$teacher','$term',$time,'$c_method',$credit);";
     $query = mysqli_query($link,$sql);
 

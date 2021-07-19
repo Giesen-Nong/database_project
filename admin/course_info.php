@@ -67,7 +67,7 @@ $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
             </div>
         </div>
         <div class="mdui-col-xs-12 mdui-col-md-10">
-            <div class="mdui-card rin-card" >
+            <div class="mdui-card rin-card"  style="overflow-y: scroll" >
                 <div class="info_container">
                     <div class="container" id="container1">
                         <h1 class="text-center">课程基本信息管理</h1>
