@@ -1,5 +1,5 @@
 <?php
-require_once 'connectvars.php';
+require_once '../connectvars.php';
 // 1. 判断是否是post提交
 // 2. 处理表单传递过来的数据（不能为空!empty;这里我就先不做处理了）
 // 3. 连接数据库并插入一条数据

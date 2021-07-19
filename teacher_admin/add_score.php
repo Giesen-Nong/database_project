@@ -1,5 +1,5 @@
 <?php
-require_once 'connectvars.php';
+require_once '../connectvars.php';
 session_start();
 $id = $_POST['id'];
 $score = $_POST['score'];

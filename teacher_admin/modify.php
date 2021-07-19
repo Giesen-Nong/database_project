@@ -1,5 +1,5 @@
 <?php
-require_once 'connectvars.php';
+require_once '../connectvars.php';
 session_start();
 function update_user(){
     $id = $_SESSION['username'];

@@ -1,5 +1,5 @@
 <?php
-require_once 'connectvars.php';
+require_once '../connectvars.php';
 $student_tb='nongjs_student_05';
 $teacher_tb='nongjs_teacher_05';
 $course_tb='nongjs_course_05';

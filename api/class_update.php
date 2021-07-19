@@ -1,5 +1,5 @@
 <?php
-require_once 'connectvars.php';
+require_once '../connectvars.php';
 $user = [''];
 function get_id(){
     $db_table = $_GET['db_table'];

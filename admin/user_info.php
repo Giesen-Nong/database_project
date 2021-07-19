@@ -1,6 +1,6 @@
 <?php
 //使用会话内存储的变量值之前必须先开启会话
-require_once 'connectvars.php';
+require_once '../connectvars.php';
 $mysqli = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 mysqli_query($mysqli,"set names 'utf8';");
 $sqls = mysqli_query($mysqli, 'select * from nongjs_user_05;');
