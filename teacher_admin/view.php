@@ -91,7 +91,6 @@ $sql_s = mysqli_query($mysqli, "call $sql_name('$c_name','$year','$class');");
                                 <th class="text-center">操作</th>
                             </tr>
                             </thead>
-                            <tbody>
                             <?php while ($row = mysqli_fetch_assoc($sql_s)): ?>
                                 <tr class="text-center">
                                     <td><?php echo $row['njs_studentNo_05']; ?></td>
@@ -115,25 +114,32 @@ $sql_s = mysqli_query($mysqli, "call $sql_name('$c_name','$year','$class');");
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         <h4 class="modal-title" id="myModalLabel">添加学生成绩</h4>
                                     </div>
-                                    <div class="modal-body">
+                                    <?php
+                                    require_once 'connectvars.php';
+                                    $mysqli = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+                                    $sql = "select * from nongjs_student_05 where njs_classNo_05='$class'";
+                                    $sql_s = mysqli_query($mysqli, $sql);
+                                    ?>
+                                    <?php while ($row = mysqli_fetch_assoc($sql_s)): ?>
+                                    <div >
                                         <form id="form_data" class="form-horizontal" role="form" method="post" action="add_score.php">
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label  class="col-sm-2 control-label">学号</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" id="id" name="id"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label  class="col-sm-2 control-label">成绩</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" id="score" name="score"/>
-                                                    </div>
-                                                </div>
-                                                </div>
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <td><?php echo $name=$row['njs_studentNo_05']; ?></td>
+                                                            <input style="display: none" type="text" name="id[]" value="<?php echo $row['njs_studentNo_05']; ?>">
+                                                            <td><?php echo $row['njs_studentName_05']; ?></td>
+                                                            <?php
+                                                            $sql = "select * from nongjs_report_05 where njs_studentNo_05='$name'";
+                                                            $sql_a = mysqli_query($mysqli, $sql);
+                                                            $row_a = mysqli_fetch_assoc($sql_a);
+                                                            ?>
+                                                            <input type="text" style="display: none" value="<?php echo $row_a['njs_reportScore_05']; ?>" name="old_score[]">
+                                                            <td>成绩：<input type="text" id="score" value="<?php echo $row_a['njs_reportScore_05']; ?>" name="score[]"/></td>
+                                                        </tr>
+                                                    </table>
+                                    <?php endwhile;?>
                                             <input type="text" style="display: none" name="c_name" value="<?php echo $c_name; ?>">
                                             <input type="text" style="display: none" name="db_table" value="nongjs_report_05">
-                                            </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                                                 </button>
@@ -142,6 +148,7 @@ $sql_s = mysqli_query($mysqli, "call $sql_name('$c_name','$year','$class');");
                                                 </button>
                                             </div>
                                         </form>
+
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal -->

@@ -4,7 +4,7 @@ session_start();
 $id = $_POST['id'];
 $score = $_POST['score'];
 $c_name = $_POST['c_name'];
-echo $c_name;
+$old_score=$_POST['old_score'];
 $db_table = $_POST['db_table'];
 $link = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 mysqli_query($link,"set names 'utf8';");
@@ -16,16 +16,22 @@ if(!$link){
     echo "<script>alert('数据库连接失败!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
 
 }
-$sql = "INSERT INTO `$db_table`(njs_studentNo_05,njs_reportSemester_05,njs_courseNo_05,njs_reportScore_05) VALUES ('$id','$term','$c_no',$score)";
-$query = mysqli_query($link,$sql);
-if (!$query) {
-    echo "<script>alert('请输入有效信息!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
-}
-$affected = mysqli_affected_rows($link);
-if($affected!==1){
-    echo "<script>alert('添加数据失败!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
+$i=0;
+while ($i<sizeof($id)){
+    if(!$old_score[$i]){
+        $sql = "INSERT INTO `$db_table`(njs_studentNo_05,njs_reportSemester_05,njs_courseNo_05,njs_reportScore_05) VALUES ('$id[$i]','$term','$c_no',$score[$i])";
+                $query = mysqli_query($link,$sql);
+        if (!$query) {
+            echo "<script>alert('请输入有效信息!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
+        }
+        $affected = mysqli_affected_rows($link);
+        if($affected!==1){
+            echo "<script>alert('添加数据失败!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
 
+        }
+        echo "<script>alert('添加数据成功!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
+    }
+    $i++;
 }
-echo "<script>alert('添加数据成功!');location.href='".$_SERVER["HTTP_REFERER"]."';</script>";
 
 ?>
